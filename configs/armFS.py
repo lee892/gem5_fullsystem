@@ -125,6 +125,19 @@ def addOptions(parser):
                         help="executable file that runs before the --kernel")
     parser.add_argument("--dual", action="store_true", help="Dual mode gem5"\
                       " simulation.")
+    parser.add_argument("--dramsim-config", type=str,
+                        default="ini/"\
+                        "DDR3_micron_64M_8B_x4_sg15.ini",
+                        help="Directory to save/read checkpoints")
+    parser.add_argument("--dramsim-filepath", type=str,
+                        default="$(pwd)/../gem5/ext/dramsim2/DRAMSim2",
+                        help="Directory to save/read checkpoints")
+    '''parser.add_argument("--dramsim-deviceConfigFile", type=str,
+                        default="ini/DDR3_micron_32M_8B_x8_sg15.ini",
+                        help="Directory to save/read checkpoints")
+    parser.add_argument("--dramsim-systemConfigFile", type=str, 
+                        default="system.ini.example", 
+                        help="Memory organization configuration file.")'''
 
 def buildDist(options):
     if options.is_switch:

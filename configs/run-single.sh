@@ -10,12 +10,14 @@ FS_CONFIG=$(pwd)/armFS.py
 GEM5_EXE=$GEM5_DIR/build/ARM/gem5.opt
 
 SCRIPT=$(pwd)/rcS/single/hack_back_ckpt.rcS
-NNODES=2
+opt="--mem-type=DRAMSim2 --dramsim-config=ini/DDR3_micron_64M_8B_x4_sg15.ini --dramsim-filepath=$(pwd)/../gem5/ext/dramsim2/DRAMSim2 --cpu=timing"
+#debug="--debug-flags=AddrRanges,DRAMsim3 "
 
-$GEM5_EXE $FS_CONFIG 						\
+$GEM5_EXE $debug $FS_CONFIG 						\
                     --kernel=$VMLINUX           		\
                     --disk=$IMG                 		\
                     --bootscript=$SCRIPT        		\
                     --bootloader=$Bootld 			\
                     --cpu=atomic				\
-                    --num-cores=4
+                    --num-cores=4 $opt
+
